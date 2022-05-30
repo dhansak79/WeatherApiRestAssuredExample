@@ -57,7 +57,8 @@ public class ExampleTest {
 
   @ParameterizedTest
   @CsvSource( value = {
-          "London:51.5073219:-0.1276474" }, delimiter = ':'  )
+          "London:51.5073219:-0.1276474",
+          "Edinburgh:55.9533456:-3.1883749" }, delimiter = ':' )
   public void getCoordinatesForCity( String cityName, String latitude, String longitude ) {
     City city = getCityData( cityName ).get( 0 );
     Assertions.assertEquals( latitude, city.getLatitude() );
