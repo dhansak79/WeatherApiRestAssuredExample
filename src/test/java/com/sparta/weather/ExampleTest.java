@@ -16,11 +16,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-import static io.restassured.RestAssured.when;
+import static io.restassured.RestAssured.given;
 
 public class ExampleTest {
 
   public static final String OPEN_WEATHER_URL = "http://api.openweathermap.org/";
+  public static final String WEATHER_SVC = "data/2.5/weather";
+  public static final String GEO_SVC = "geo/1.0/direct";
   private static String apiKey;
 
   @BeforeAll
@@ -59,16 +61,27 @@ public class ExampleTest {
   }
 
   private ResponseBody getWeatherForCoordinates( String latitude, String longitude ) {
-    return when().get( OPEN_WEATHER_URL + "data/2.5/weather?lat="
-            + latitude + "&lon=" + longitude + "&appid=" + apiKey ).getBody();
+    return given()
+            .params( "lat", latitude )
+            .params( "lon", longitude )
+            .params( "appid", apiKey )
+            .when()
+            .get( OPEN_WEATHER_URL + WEATHER_SVC )
+            .getBody();
   }
 
   private List< City > getCityData( String city ) {
-    ResponseBody responseBody = when().get( OPEN_WEATHER_URL + "geo/1.0/direct?q=" + city + "&appid=" + apiKey ).getBody();
+    ResponseBody responseBody = given()
+            .params( "appid", apiKey )
+            .params( "q", city )
+            .when()
+            .get( OPEN_WEATHER_URL + GEO_SVC )
+            .getBody();
+
     ObjectMapper objectMapper = new ObjectMapper().configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false );
+
     try {
-      return objectMapper.readValue( responseBody.asString(), new TypeReference<>() {
-      } );
+      return objectMapper.readValue( responseBody.asString(), new TypeReference<>() {} );
     } catch ( JsonProcessingException e ) {
       e.printStackTrace();
       throw new RuntimeException();
