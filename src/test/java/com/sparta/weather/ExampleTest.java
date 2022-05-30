@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,7 +52,7 @@ public class ExampleTest {
           "London:51.5073219:-0.1276474",
           "Edinburgh:55.9533456:-3.1883749" }, delimiter = ':' )
   public void getCoordinatesForCityTest( String cityName, String latitude, String longitude ) {
-    List<City> cities = getCityData( cityName );
+    List< City > cities = getCityData( cityName );
     City city = cities.get( 0 );
     Assertions.assertEquals( latitude, city.getLatitude() );
     Assertions.assertEquals( longitude, city.getLongitude() );

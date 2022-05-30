@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.when;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class JokesTest {
+public class ChuckNorrisJokesTest {
 
   @Test
   public void categoriesOfJokes() {

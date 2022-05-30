@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Cities {
 
-  private List<City> cities;
+  private final List< City > cities;
 
   public Cities( List< City > cities ) {
     this.cities = cities;
