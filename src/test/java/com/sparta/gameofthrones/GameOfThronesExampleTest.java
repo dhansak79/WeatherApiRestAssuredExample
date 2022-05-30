@@ -15,11 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameOfThronesExampleTest {
 
-  private static final String BOOKS_SVC = "https://anapioficeandfire.com/api/books";
+  private static final String GOT_BOOKS_SVC = "https://anapioficeandfire.com/api/books";
 
   @Test
   public void getAllBooksTest() throws JsonProcessingException {
-    ResponseBody responseBody = when().get( BOOKS_SVC ).getBody();
+    ResponseBody responseBody = when().get( GOT_BOOKS_SVC ).getBody();
 
     ObjectMapper objectMapper = new ObjectMapper()
             .configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false );
