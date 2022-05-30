@@ -21,8 +21,8 @@ import static io.restassured.RestAssured.given;
 public class ExampleTest {
 
   public static final String OPEN_WEATHER_URL = "http://api.openweathermap.org/";
-  public static final String WEATHER_SVC = "data/2.5/weather";
-  public static final String GEO_SVC = "geo/1.0/direct";
+  public static final String WEATHER_SVC = OPEN_WEATHER_URL + "data/2.5/weather";
+  public static final String GEO_SVC = OPEN_WEATHER_URL + "geo/1.0/direct";
   private static String apiKey;
 
   @BeforeAll
@@ -66,7 +66,7 @@ public class ExampleTest {
             .params( "lon", longitude )
             .params( "appid", apiKey )
             .when()
-            .get( OPEN_WEATHER_URL + WEATHER_SVC )
+            .get( WEATHER_SVC )
             .getBody();
   }
 
@@ -75,13 +75,14 @@ public class ExampleTest {
             .params( "appid", apiKey )
             .params( "q", city )
             .when()
-            .get( OPEN_WEATHER_URL + GEO_SVC )
+            .get( GEO_SVC )
             .getBody();
 
     ObjectMapper objectMapper = new ObjectMapper().configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false );
 
     try {
-      return objectMapper.readValue( responseBody.asString(), new TypeReference<>() {} );
+      return objectMapper.readValue( responseBody.asString(), new TypeReference<>() {
+      } );
     } catch ( JsonProcessingException e ) {
       e.printStackTrace();
       throw new RuntimeException();
