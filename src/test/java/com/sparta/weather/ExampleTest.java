@@ -8,9 +8,9 @@ import com.sparta.weather.model.City;
 import io.restassured.response.ResponseBody;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -48,19 +48,13 @@ public class ExampleTest {
 
   }
 
-  @Test
-  public void coordinatesForCity() {
-    City city = getCityData( "London" ).get( 0 );
-    ResponseBody responseBody = getWeatherForCoordinates( city.getLongitude(), city.getLatitude() );
-    System.out.println( responseBody.asPrettyString() );
-  }
-
   @ParameterizedTest
   @CsvSource( value = {
           "London:51.5073219:-0.1276474",
           "Edinburgh:55.9533456:-3.1883749" }, delimiter = ':' )
-  public void getCoordinatesForCity( String cityName, String latitude, String longitude ) {
-    City city = getCityData( cityName ).get( 0 );
+  public void getCoordinatesForCityTest( String cityName, String latitude, String longitude ) {
+    List<City> cities = getCityData( cityName );
+    City city = cities.get( 0 );
     Assertions.assertEquals( latitude, city.getLatitude() );
     Assertions.assertEquals( longitude, city.getLongitude() );
   }
