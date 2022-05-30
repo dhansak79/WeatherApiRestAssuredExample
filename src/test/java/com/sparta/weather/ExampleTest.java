@@ -29,7 +29,7 @@ public class ExampleTest {
   static void getProperties() {
     try {
       Properties properties = new Properties();
-      properties.load( new FileReader( "src/test/resources/weatherapi.properties" ) );
+      properties.load( new FileReader( "src/test/resources/weathmusicerapi.properties" ) );
       apiKey = properties.getProperty( "apikey" );
     } catch ( IOException e ) {
       throw new RuntimeException( e );
@@ -43,10 +43,8 @@ public class ExampleTest {
           "37.7749:122.4194:US" //San Francisco
   }, delimiter = ':' )
   public void correctCountryReturnedForLatitudeAndLongitudeTest( String latitude, String longitude, String expectedCountry ) {
-    System.out.println( apiKey );
-    ResponseBody responseBody = getWeatherForCoordinates( latitude, longitude );
+    ResponseBody responseBody = getWeatherForCity( latitude );
     System.out.println( responseBody.asPrettyString() );
-
   }
 
   @ParameterizedTest
@@ -54,23 +52,28 @@ public class ExampleTest {
           "London:51.5073219:-0.1276474",
           "Edinburgh:55.9533456:-3.1883749" }, delimiter = ':' )
   public void getCoordinatesForCityTest( String cityName, String latitude, String longitude ) {
-    List< City > cities = getCityData( cityName );
+    List< City > cities = getCityGeoData( cityName );
     City city = cities.get( 0 );
     Assertions.assertEquals( latitude, city.getLatitude() );
     Assertions.assertEquals( longitude, city.getLongitude() );
   }
 
-  private ResponseBody getWeatherForCoordinates( String latitude, String longitude ) {
+  private ResponseBody getWeatherForCity( String cityName ) {
+    List< City > cities = getCityGeoData( cityName );
+    return getWeatherForCity( cities.get( 0 ) );
+  }
+
+  private ResponseBody getWeatherForCity( City city ) {
     return given()
-            .params( "lat", latitude )
-            .params( "lon", longitude )
+            .params( "lat", city.getLatitude() )
+            .params( "lon", city.getLongitude() )
             .params( "appid", apiKey )
             .when()
             .get( WEATHER_SVC )
             .getBody();
   }
 
-  private List< City > getCityData( String city ) {
+  private List< City > getCityGeoData( String city ) {
     ResponseBody responseBody = given()
             .params( "appid", apiKey )
             .params( "q", city )
