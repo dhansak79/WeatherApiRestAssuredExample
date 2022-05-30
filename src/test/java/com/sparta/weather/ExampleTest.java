@@ -44,6 +44,7 @@ public class ExampleTest {
   }, delimiter = ':' )
   public void correctCountryReturnedForLatitudeAndLongitudeTest( String latitude, String longitude, String expectedCountry ) {
     ResponseBody responseBody = getWeatherForCity( latitude );
+    //TODO no assertions
     System.out.println( responseBody.asPrettyString() );
   }
 
@@ -73,10 +74,10 @@ public class ExampleTest {
             .getBody();
   }
 
-  private List< City > getCityGeoData( String city ) {
+  private List< City > getCityGeoData( String cityName ) {
     ResponseBody responseBody = given()
+            .params( "q", cityName )
             .params( "appid", apiKey )
-            .params( "q", city )
             .when()
             .get( GEO_SVC )
             .getBody();
