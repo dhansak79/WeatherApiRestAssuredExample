@@ -21,14 +21,13 @@ public class GameOfThronesExampleTest {
   public void getAllBooksTest() throws JsonProcessingException {
     ResponseBody responseBody = when().get( BOOKS_SVC ).getBody();
 
-    ObjectMapper objectMapper = new ObjectMapper().configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false );
+    ObjectMapper objectMapper = new ObjectMapper()
+            .configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false );
 
-    List< Book > books = objectMapper.readValue( responseBody.asString(), new TypeReference<>() {
+    List< Book > gameOfThronesBooks = objectMapper.readValue( responseBody.asString(), new TypeReference<>() {
     } );
 
-    assertThat( books.size() ).isEqualTo( 10 );
-
-    assertThat( books ).extracting( "name" )
+    assertThat( gameOfThronesBooks ).extracting( "name" )
             .containsExactlyInAnyOrder(
                     "A Game of Thrones",
                     "A Clash of Kings",
@@ -40,6 +39,5 @@ public class GameOfThronesExampleTest {
                     "A Dance with Dragons",
                     "The Princess and the Queen",
                     "The Rogue Prince" );
-
   }
 }
