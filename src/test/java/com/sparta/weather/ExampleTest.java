@@ -1,12 +1,13 @@
 package com.sparta.weather;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+
+import static io.restassured.RestAssured.when;
 
 public class ExampleTest {
 
@@ -25,8 +26,9 @@ public class ExampleTest {
 
   @Test
   public void exampleTest() {
-    System.out.println( apiKey );
-    Assertions.assertTrue( true );
+    System.out.println(apiKey);
+    when().get( "https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&appid=" + apiKey )
+            .then().statusCode( 200 );
   }
 
 }
