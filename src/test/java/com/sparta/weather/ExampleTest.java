@@ -74,7 +74,7 @@ public class ExampleTest {
     ResponseBody responseBody = when().get( OPEN_WEATHER_URL + "geo/1.0/direct?q=" + city + "&appid=" + apiKey ).getBody();
     ObjectMapper objectMapper = new ObjectMapper().configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false );
     try {
-      return objectMapper.readValue( responseBody.asString(), new TypeReference< List< City > >() {
+      return objectMapper.readValue( responseBody.asString(), new TypeReference<>() {
       } );
     } catch ( JsonProcessingException e ) {
       e.printStackTrace();
