@@ -1,4 +1,4 @@
-package com.sparta.tronald;
+package com.sparta.examples.tronald;
 
 import io.restassured.RestAssured;
 import io.restassured.response.ResponseBody;

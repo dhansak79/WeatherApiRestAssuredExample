@@ -1,4 +1,4 @@
-package com.sparta.gameofthrones.model;
+package com.sparta.examples.gameofthrones.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

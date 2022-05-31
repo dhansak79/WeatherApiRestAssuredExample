@@ -1,4 +1,4 @@
-package com.sparta.chucknorris;
+package com.sparta.examples.chucknorris.chucknorris;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

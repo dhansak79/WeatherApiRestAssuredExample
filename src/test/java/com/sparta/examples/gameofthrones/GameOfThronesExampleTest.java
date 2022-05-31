@@ -1,10 +1,10 @@
-package com.sparta.gameofthrones;
+package com.sparta.examples.gameofthrones;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.gameofthrones.model.Book;
+import com.sparta.examples.gameofthrones.model.Book;
 import io.restassured.RestAssured;
 import io.restassured.response.ResponseBody;
 import org.junit.jupiter.api.BeforeAll;

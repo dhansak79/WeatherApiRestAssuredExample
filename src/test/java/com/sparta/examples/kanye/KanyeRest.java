@@ -1,4 +1,4 @@
-package com.sparta.kanye;
+package com.sparta.examples.kanye;
 
 import io.restassured.response.ResponseBody;
 import org.junit.jupiter.api.Test;
