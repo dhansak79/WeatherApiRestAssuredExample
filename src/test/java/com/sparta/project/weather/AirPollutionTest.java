@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 public class AirPollutionTest {
 
   @Test
-  public void checkAirPolution() {
+  public void checkAirPollution() {
     String url = "http://api.openweathermap.org/data/2.5/air_pollution?lat=50&lon=50&appid="
             + PropertiesController.getApiKey();
     AirPollution airPollution = get( url ).as( AirPollution.class );
