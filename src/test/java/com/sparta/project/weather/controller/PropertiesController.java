@@ -12,8 +12,8 @@ public class PropertiesController {
       properties.load(new FileReader("src/test/resources/weatherapi.properties"));
       return properties.getProperty("apikey");
     } catch (IOException e) {
-      System.out.println("Getting property from system properties: " + System.getProperty( "system.weatherapikey" ));
-      return System.getProperty( "system.weatherapikey" );
+      System.out.println("Getting property from system properties: " + System.getProperty( "weatherapikey" ));
+      return System.getProperty( "weatherapikey" );
     }
   }
 }
