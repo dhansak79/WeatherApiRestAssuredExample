@@ -1,36 +1,24 @@
 package com.sparta.jsontoclass;
 
-import com.sun.codemodel.JCodeModel;
-import io.restassured.response.ResponseBody;
-import org.jsonschema2pojo.*;
-import org.jsonschema2pojo.rules.RuleFactory;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.Properties;
-
 import static com.sparta.weather.ExampleTest.GEO_SVC;
 import static io.restassured.RestAssured.given;
 
+import com.sparta.project.weather.controller.PropertiesController;
+import com.sun.codemodel.JCodeModel;
+import io.restassured.response.ResponseBody;
+import java.io.File;
+import java.io.IOException;
+import org.jsonschema2pojo.DefaultGenerationConfig;
+import org.jsonschema2pojo.GenerationConfig;
+import org.jsonschema2pojo.Jackson2Annotator;
+import org.jsonschema2pojo.SchemaGenerator;
+import org.jsonschema2pojo.SchemaMapper;
+import org.jsonschema2pojo.SchemaStore;
+import org.jsonschema2pojo.SourceType;
+import org.jsonschema2pojo.rules.RuleFactory;
+import org.junit.jupiter.api.Test;
+
 public class JsonToClass {
-
-
-  private static String apiKey;
-
-  @BeforeAll
-  static void getProperties() {
-    try {
-      Properties properties = new Properties();
-      properties.load( new FileReader( "src/test/resources/weatherapi.properties" ) );
-      apiKey = properties.getProperty( "apikey" );
-    } catch ( IOException e ) {
-      throw new RuntimeException( e );
-    }
-  }
 
   public static void convertJsonToJavaClass( String jsonString, String javaClassName)
           throws IOException {
@@ -60,7 +48,7 @@ public class JsonToClass {
   void getClassMap(){
     ResponseBody responseBody = given()
             .params( "q", "London" )
-            .params( "appid", apiKey )
+            .params( "appid", PropertiesController.getApiKey())
             .when()
             .get( GEO_SVC )
             .getBody();

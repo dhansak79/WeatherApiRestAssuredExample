@@ -5,7 +5,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.gameofthrones.model.Book;
+import io.restassured.RestAssured;
 import io.restassured.response.ResponseBody;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -15,11 +17,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameOfThronesExampleTest {
 
-  private static final String GOT_BOOKS_SVC = "https://anapioficeandfire.com/api/books";
+
+  @BeforeAll
+  public static void setup() {
+    RestAssured.baseURI = "https://anapioficeandfire.com/api/";
+  }
 
   @Test
   public void getAllBooksTest() throws JsonProcessingException {
-    ResponseBody responseBody = when().get( GOT_BOOKS_SVC ).getBody();
+    ResponseBody responseBody = when().get( "/books" ).getBody();
 
     ObjectMapper objectMapper = new ObjectMapper()
             .configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false );
