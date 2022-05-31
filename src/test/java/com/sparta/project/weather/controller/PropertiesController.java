@@ -7,13 +7,18 @@ import java.util.Properties;
 public class PropertiesController {
 
   public static String getApiKey() {
+    String apiKey;
     try {
       Properties properties = new Properties();
       properties.load( new FileReader( "src/test/resources/weatherapi.properties" ) );
-      return properties.getProperty( "apikey" );
+      apiKey = properties.getProperty( "apikey" );
     } catch ( IOException e ) {
-      System.out.println( "Getting property from system properties: " + System.getenv( "weatherapikey" ) );
-      return System.getenv( "weatherapikey" );
+      // attempt to get from env property
+      apiKey = System.getenv( "weatherapikey" );
+      if ( apiKey == null ) {
+        e.printStackTrace();
+      }
     }
+    return apiKey;
   }
 }
