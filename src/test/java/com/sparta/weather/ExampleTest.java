@@ -8,6 +8,7 @@ import com.sparta.weather.model.City;
 import io.restassured.response.ResponseBody;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -36,15 +37,9 @@ public class ExampleTest {
     }
   }
 
-  @ParameterizedTest
-  @CsvSource( value = {
-          "35:139:JP", //Can't remember
-          "51.5072:0.1276:GB", //London
-          "37.7749:122.4194:US" //San Francisco
-  }, delimiter = ':' )
-  public void correctCountryReturnedForLatitudeAndLongitudeTest( String latitude, String longitude, String expectedCountry ) {
-    ResponseBody responseBody = getWeatherForCity( latitude );
-    //TODO no assertions
+  @Test
+  public void correctCountryReturnedForLatitudeAndLongitudeTest(  ) {
+    ResponseBody responseBody = getWeatherForCity( "London" );
     System.out.println( responseBody.asPrettyString() );
   }
 
