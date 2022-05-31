@@ -29,7 +29,7 @@ public class ExampleTest {
   static void getProperties() {
     try {
       Properties properties = new Properties();
-      properties.load( new FileReader( "src/test/resources/weathmusicerapi.properties" ) );
+      properties.load( new FileReader( "src/test/resources/weatherapi.properties" ) );
       apiKey = properties.getProperty( "apikey" );
     } catch ( IOException e ) {
       throw new RuntimeException( e );
