@@ -24,3 +24,4 @@ hs_err_pid*
 /.idea/
 /src/test/resources/weatherapi.properties
 /target/
+*.iml
