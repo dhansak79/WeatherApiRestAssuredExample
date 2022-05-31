@@ -15,7 +15,6 @@ public class AirPollutionTest {
     String url = "http://api.openweathermap.org/data/2.5/air_pollution?lat=50&lon=50&appid="
             + PropertiesController.getApiKey();
     AirPollution airPollution = get( url ).as( AirPollution.class );
-
     Assertions.assertEquals( 2, airPollution.getList().get(0).getMain().getAqi());
   }
 
