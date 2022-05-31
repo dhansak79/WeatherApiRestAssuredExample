@@ -12,7 +12,7 @@ public class PropertiesController {
       properties.load(new FileReader("src/test/resources/weatherapi.properties"));
       return properties.getProperty("apikey");
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      return System.getProperty( "weatherapikey" );
     }
   }
 }
