@@ -1,16 +1,10 @@
 package com.sparta.examples.gameofthrones;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.examples.gameofthrones.model.Book;
 import io.restassured.RestAssured;
-import io.restassured.response.ResponseBody;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static io.restassured.RestAssured.when;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,15 +19,9 @@ public class GameOfThronesExampleTest {
 
   @Test
   public void getAllBooksTest() throws JsonProcessingException {
-    ResponseBody responseBody = when().get( "/books" ).getBody();
+    Book[] books = when().get( "/books" ).getBody().as( Book[].class );
 
-    ObjectMapper objectMapper = new ObjectMapper()
-            .configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false );
-
-    List< Book > gameOfThronesBooks = objectMapper.readValue( responseBody.asString(), new TypeReference<>() {
-    } );
-
-    assertThat( gameOfThronesBooks ).extracting( "name" )
+    assertThat( books ).extracting( "name" )
             .containsExactlyInAnyOrder(
                     "A Game of Thrones",
                     "A Clash of Kings",
@@ -44,6 +32,8 @@ public class GameOfThronesExampleTest {
                     "The Mystery Knight",
                     "A Dance with Dragons",
                     "The Princess and the Queen",
-                    "The Rogue Prince" );
+                    "The Rogue Prince" )
+            .doesNotContain(
+                    "The Fellowship of the Ring" );
   }
 }
