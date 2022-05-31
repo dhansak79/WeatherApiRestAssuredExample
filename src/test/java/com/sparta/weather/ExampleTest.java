@@ -4,18 +4,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.project.weather.controller.PropertiesController;
 import com.sparta.weather.model.City;
 import io.restassured.response.ResponseBody;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 
@@ -24,21 +21,10 @@ public class ExampleTest {
   public static final String OPEN_WEATHER_URL = "http://api.openweathermap.org/";
   public static final String WEATHER_SVC = OPEN_WEATHER_URL + "data/2.5/weather";
   public static final String GEO_SVC = OPEN_WEATHER_URL + "geo/1.0/direct";
-  private static String apiKey;
 
-  @BeforeAll
-  static void getProperties() {
-    try {
-      Properties properties = new Properties();
-      properties.load( new FileReader( "src/test/resources/weatherapi.properties" ) );
-      apiKey = properties.getProperty( "apikey" );
-    } catch ( IOException e ) {
-      throw new RuntimeException( e );
-    }
-  }
 
   @Test
-  public void correctCountryReturnedForLatitudeAndLongitudeTest(  ) {
+  public void correctCountryReturnedForLatitudeAndLongitudeTest() {
     ResponseBody responseBody = getWeatherForCity( "London" );
     System.out.println( responseBody.asPrettyString() );
   }
@@ -63,7 +49,7 @@ public class ExampleTest {
     return given()
             .params( "lat", city.getLatitude() )
             .params( "lon", city.getLongitude() )
-            .params( "appid", apiKey )
+            .params( "appid", PropertiesController.getApiKey() )
             .when()
             .get( WEATHER_SVC )
             .getBody();
@@ -72,7 +58,7 @@ public class ExampleTest {
   private List< City > getCityGeoData( String cityName ) {
     ResponseBody responseBody = given()
             .params( "q", cityName )
-            .params( "appid", apiKey )
+            .params( "appid", PropertiesController.getApiKey())
             .when()
             .get( GEO_SVC )
             .getBody();
