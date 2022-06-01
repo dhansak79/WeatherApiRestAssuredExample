@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.get;
 public class CurrentWeatherTest {
 
   @Test
-  void makeCWPojo() {
+  void currentWeatherTest() {
     String url = "https://api.openweathermap.org/data/2.5/weather?lat=0&lon=130&appid=" + PropertiesController.getApiKey();
 
     CurrentWeather currentWeather = get(url).as(CurrentWeather.class);
