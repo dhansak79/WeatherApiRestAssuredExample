@@ -1,5 +1,5 @@
 
-package com.sparta.weather.model;
+package com.sparta.project.weather.model.currentweather;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,46 +13,46 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "lon",
-    "lat"
+    "sunrise",
+    "sunset"
 })
 @Generated("jsonschema2pojo")
-public class Coord {
+public class Sys {
 
-    @JsonProperty("lon")
-    private Integer lon;
-    @JsonProperty("lat")
-    private Integer lat;
+    @JsonProperty("sunrise")
+    private Integer sunrise;
+    @JsonProperty("sunset")
+    private Integer sunset;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("lon")
-    public Integer getLon() {
-        return lon;
+    @JsonProperty("sunrise")
+    public Integer getSunrise() {
+        return sunrise;
     }
 
-    @JsonProperty("lon")
-    public void setLon(Integer lon) {
-        this.lon = lon;
+    @JsonProperty("sunrise")
+    public void setSunrise(Integer sunrise) {
+        this.sunrise = sunrise;
     }
 
-    public Coord withLon(Integer lon) {
-        this.lon = lon;
+    public Sys withSunrise(Integer sunrise) {
+        this.sunrise = sunrise;
         return this;
     }
 
-    @JsonProperty("lat")
-    public Integer getLat() {
-        return lat;
+    @JsonProperty("sunset")
+    public Integer getSunset() {
+        return sunset;
     }
 
-    @JsonProperty("lat")
-    public void setLat(Integer lat) {
-        this.lat = lat;
+    @JsonProperty("sunset")
+    public void setSunset(Integer sunset) {
+        this.sunset = sunset;
     }
 
-    public Coord withLat(Integer lat) {
-        this.lat = lat;
+    public Sys withSunset(Integer sunset) {
+        this.sunset = sunset;
         return this;
     }
 
@@ -66,7 +66,7 @@ public class Coord {
         this.additionalProperties.put(name, value);
     }
 
-    public Coord withAdditionalProperty(String name, Object value) {
+    public Sys withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -74,14 +74,14 @@ public class Coord {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Coord.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("lon");
+        sb.append(Sys.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("sunrise");
         sb.append('=');
-        sb.append(((this.lon == null)?"<null>":this.lon));
+        sb.append(((this.sunrise == null)?"<null>":this.sunrise));
         sb.append(',');
-        sb.append("lat");
+        sb.append("sunset");
         sb.append('=');
-        sb.append(((this.lat == null)?"<null>":this.lat));
+        sb.append(((this.sunset == null)?"<null>":this.sunset));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
@@ -98,9 +98,9 @@ public class Coord {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.lon == null)? 0 :this.lon.hashCode()));
+        result = ((result* 31)+((this.sunrise == null)? 0 :this.sunrise.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.lat == null)? 0 :this.lat.hashCode()));
+        result = ((result* 31)+((this.sunset == null)? 0 :this.sunset.hashCode()));
         return result;
     }
 
@@ -109,11 +109,11 @@ public class Coord {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Coord) == false) {
+        if ((other instanceof Sys) == false) {
             return false;
         }
-        Coord rhs = ((Coord) other);
-        return ((((this.lon == rhs.lon)||((this.lon!= null)&&this.lon.equals(rhs.lon)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.lat == rhs.lat)||((this.lat!= null)&&this.lat.equals(rhs.lat))));
+        Sys rhs = ((Sys) other);
+        return ((((this.sunrise == rhs.sunrise)||((this.sunrise!= null)&&this.sunrise.equals(rhs.sunrise)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.sunset == rhs.sunset)||((this.sunset!= null)&&this.sunset.equals(rhs.sunset))));
     }
 
 }

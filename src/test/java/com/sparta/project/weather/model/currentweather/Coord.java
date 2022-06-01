@@ -1,5 +1,5 @@
 
-package com.sparta.weather.model;
+package com.sparta.project.weather.model.currentweather;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,28 +13,46 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "aqi"
+    "lon",
+    "lat"
 })
 @Generated("jsonschema2pojo")
-public class Main {
+public class Coord {
 
-    @JsonProperty("aqi")
-    private Integer aqi;
+    @JsonProperty("lon")
+    private Integer lon;
+    @JsonProperty("lat")
+    private Integer lat;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("aqi")
-    public Integer getAqi() {
-        return aqi;
+    @JsonProperty("lon")
+    public Integer getLon() {
+        return lon;
     }
 
-    @JsonProperty("aqi")
-    public void setAqi(Integer aqi) {
-        this.aqi = aqi;
+    @JsonProperty("lon")
+    public void setLon(Integer lon) {
+        this.lon = lon;
     }
 
-    public Main withAqi(Integer aqi) {
-        this.aqi = aqi;
+    public Coord withLon(Integer lon) {
+        this.lon = lon;
+        return this;
+    }
+
+    @JsonProperty("lat")
+    public Integer getLat() {
+        return lat;
+    }
+
+    @JsonProperty("lat")
+    public void setLat(Integer lat) {
+        this.lat = lat;
+    }
+
+    public Coord withLat(Integer lat) {
+        this.lat = lat;
         return this;
     }
 
@@ -48,7 +66,7 @@ public class Main {
         this.additionalProperties.put(name, value);
     }
 
-    public Main withAdditionalProperty(String name, Object value) {
+    public Coord withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -56,10 +74,14 @@ public class Main {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Main.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("aqi");
+        sb.append(Coord.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("lon");
         sb.append('=');
-        sb.append(((this.aqi == null)?"<null>":this.aqi));
+        sb.append(((this.lon == null)?"<null>":this.lon));
+        sb.append(',');
+        sb.append("lat");
+        sb.append('=');
+        sb.append(((this.lat == null)?"<null>":this.lat));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
@@ -76,8 +98,9 @@ public class Main {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.aqi == null)? 0 :this.aqi.hashCode()));
+        result = ((result* 31)+((this.lon == null)? 0 :this.lon.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
+        result = ((result* 31)+((this.lat == null)? 0 :this.lat.hashCode()));
         return result;
     }
 
@@ -86,11 +109,11 @@ public class Main {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Main) == false) {
+        if ((other instanceof Coord) == false) {
             return false;
         }
-        Main rhs = ((Main) other);
-        return (((this.aqi == rhs.aqi)||((this.aqi!= null)&&this.aqi.equals(rhs.aqi)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))));
+        Coord rhs = ((Coord) other);
+        return ((((this.lon == rhs.lon)||((this.lon!= null)&&this.lon.equals(rhs.lon)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.lat == rhs.lat)||((this.lat!= null)&&this.lat.equals(rhs.lat))));
     }
 
 }
