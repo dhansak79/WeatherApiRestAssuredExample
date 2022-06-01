@@ -10,9 +10,14 @@ import com.sparta.project.weather.model.City;
 import io.restassured.response.ResponseBody;
 import java.util.List;
 
-public class GeoData {
+public class GeoData implements ApiData{
 
-  public static List<City> getDataForCity(String cityName) {
+  @Override
+  public Object getData() {
+    return null;
+  }
+
+  public List<City> getData( String cityName) {
     String url = "http://api.openweathermap.org/geo/1.0/direct";
 
     ResponseBody responseBody = given()
