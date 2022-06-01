@@ -1,5 +1,5 @@
 
-package com.sparta.weather.model;
+package com.sparta.project.weather.model.airpollutionmodels;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
