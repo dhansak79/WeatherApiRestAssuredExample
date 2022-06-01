@@ -1,13 +1,9 @@
-package com.sparta.project.weather.model;
+package com.sparta.project.weather;
 import com.sparta.project.weather.model.fivedayforecast.FiveDayForecast;
-import com.sparta.jsontoclass.JsonToClass;
-import com.sparta.jsontoclass.JsonToClassFactory;
 import com.sparta.project.weather.controller.PropertiesController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.get;
-
-import java.io.IOException;
 
 public class FiveDayForecastTest {
 
