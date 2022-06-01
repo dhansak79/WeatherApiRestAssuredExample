@@ -1,7 +1,6 @@
 
-package com.sparta.weather.model;
+package com.sparta.project.weather.model.airpollutionmodels;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
@@ -14,46 +13,46 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "coord",
-    "list"
+    "lon",
+    "lat"
 })
 @Generated("jsonschema2pojo")
-public class AirPollution {
+public class Coord {
 
-    @JsonProperty("coord")
-    private Coord coord;
-    @JsonProperty("list")
-    private java.util.List<com.sparta.weather.model.List> list = new ArrayList<com.sparta.weather.model.List>();
+    @JsonProperty("lon")
+    private Integer lon;
+    @JsonProperty("lat")
+    private Integer lat;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("coord")
-    public Coord getCoord() {
-        return coord;
+    @JsonProperty("lon")
+    public Integer getLon() {
+        return lon;
     }
 
-    @JsonProperty("coord")
-    public void setCoord(Coord coord) {
-        this.coord = coord;
+    @JsonProperty("lon")
+    public void setLon(Integer lon) {
+        this.lon = lon;
     }
 
-    public AirPollution withCoord(Coord coord) {
-        this.coord = coord;
+    public Coord withLon(Integer lon) {
+        this.lon = lon;
         return this;
     }
 
-    @JsonProperty("list")
-    public java.util.List<com.sparta.weather.model.List> getList() {
-        return list;
+    @JsonProperty("lat")
+    public Integer getLat() {
+        return lat;
     }
 
-    @JsonProperty("list")
-    public void setList(java.util.List<com.sparta.weather.model.List> list) {
-        this.list = list;
+    @JsonProperty("lat")
+    public void setLat(Integer lat) {
+        this.lat = lat;
     }
 
-    public AirPollution withList(java.util.List<com.sparta.weather.model.List> list) {
-        this.list = list;
+    public Coord withLat(Integer lat) {
+        this.lat = lat;
         return this;
     }
 
@@ -67,7 +66,7 @@ public class AirPollution {
         this.additionalProperties.put(name, value);
     }
 
-    public AirPollution withAdditionalProperty(String name, Object value) {
+    public Coord withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -75,14 +74,14 @@ public class AirPollution {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(AirPollution.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("coord");
+        sb.append(Coord.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("lon");
         sb.append('=');
-        sb.append(((this.coord == null)?"<null>":this.coord));
+        sb.append(((this.lon == null)?"<null>":this.lon));
         sb.append(',');
-        sb.append("list");
+        sb.append("lat");
         sb.append('=');
-        sb.append(((this.list == null)?"<null>":this.list));
+        sb.append(((this.lat == null)?"<null>":this.lat));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
@@ -99,9 +98,9 @@ public class AirPollution {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.coord == null)? 0 :this.coord.hashCode()));
+        result = ((result* 31)+((this.lon == null)? 0 :this.lon.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.list == null)? 0 :this.list.hashCode()));
+        result = ((result* 31)+((this.lat == null)? 0 :this.lat.hashCode()));
         return result;
     }
 
@@ -110,11 +109,11 @@ public class AirPollution {
         if (other == this) {
             return true;
         }
-        if ((other instanceof AirPollution) == false) {
+        if ((other instanceof Coord) == false) {
             return false;
         }
-        AirPollution rhs = ((AirPollution) other);
-        return ((((this.coord == rhs.coord)||((this.coord!= null)&&this.coord.equals(rhs.coord)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.list == rhs.list)||((this.list!= null)&&this.list.equals(rhs.list))));
+        Coord rhs = ((Coord) other);
+        return ((((this.lon == rhs.lon)||((this.lon!= null)&&this.lon.equals(rhs.lon)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.lat == rhs.lat)||((this.lat!= null)&&this.lat.equals(rhs.lat))));
     }
 
 }
